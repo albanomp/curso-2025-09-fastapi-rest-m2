@@ -15,3 +15,4 @@ def obtener_biblioteca():
         "total_libros": 3,
         "abierta": True
     }
+    
