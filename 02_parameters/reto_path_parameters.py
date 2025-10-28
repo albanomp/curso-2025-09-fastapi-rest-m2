@@ -1,17 +1,31 @@
 from fastapi import FastAPI
 
-# Crear la instancia de la aplicación
 app = FastAPI()
 
-# Endpoint con path parameter (user_id) y query parameters opcionales
 @app.get("/users/{user_id}")
-def obtener_usuario(user_id: int, include_email: bool = False, format: str = "basic"):
-    """
-    Endpoint para obtener información de un usuario específico.
+def get_user(user_id: int, include_email: bool = False, format: str = "basic"):
+    # diccionario base
+    user_data = {
+        "user_id": user_id,
+        "name": f"Usuario {user_id}",
+        "format": format
+    }
+    
+    # añadir email si include_email es True
+    if include_email:
+        user_data["email"] = f"user{user_id}@example.com"
+        
+    return user_data
 
-    Args:
-        user_id (int): ID del usuario (path parameter)
-        include_email (bool, opcional): Si True, incluye el email del usuario.
-        format (str, opcional): Formato de respuesta. Por defecto "basic".
-    """
+"""
+Poner en la url del navegador para comprobar:
 
+- base: 
+    http://localhost:8000/users/8
+- incluyendo email:
+    http://localhost:8000/users/8?include_email=true
+- incluyendo format:
+    http://localhost:8000/users/8?format=complete
+- incluyendo email y format: 
+    http://localhost:8000/users/8?include_email=true&format=complete
+"""
