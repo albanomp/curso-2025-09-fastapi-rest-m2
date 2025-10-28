@@ -34,10 +34,10 @@ def obtener_producto(product_id: int,
                "category" : f"Categoria{product_id % 3 + 1}",
                "format" : format}
     
-    if include_price:
+    if include_price: # añadir precio si include_price es True
         producto["price"] = f"{product_id * 10}.99"
         
-    if include_stock:
+    if include_stock: # añadir stock si include_stock es True
         producto["stock"] = product_id * 5 
     
     return producto  
