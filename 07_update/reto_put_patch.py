@@ -24,12 +24,6 @@ from typing import Optional
 
 app = FastAPI()
 
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import Optional
-
-app = FastAPI()
-
 class Producto(BaseModel):
     nombre: str
     precio: float
